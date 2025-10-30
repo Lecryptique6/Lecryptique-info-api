@@ -1,0 +1,18 @@
+name = "lecryptique-info-api"
+main = "src/index.js"
+compatibility_date = "2024-10-30"
+
+# Configuration pour Cloudflare Workers
+workers_dev = true
+
+# Déclenchement automatique toutes les 2 heures
+[triggers]
+crons = ["0 */2 * * *"]
+
+# Variables d'environnement (optionnel - peut aussi être en dur dans le code)
+[vars]
+# API_KEY = "votre_clé_ici"  # À définir via `wrangler secret put API_KEY`
+
+# Limites de ressources
+[placement]
+mode = "smart"
