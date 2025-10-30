@@ -81,14 +81,6 @@ function shouldRefreshCache(type) {
   console.log('Cache initialisé');
 })();
 
-// Mise à jour automatique toutes les 2 heures
-setInterval(async () => {
-  await Promise.all([
-    updateCache('crypto', newsCache.crypto.country),
-    updateCache('gold', newsCache.gold.country),
-  ]);
-}, CONFIG.UPDATE_INTERVAL);
-
 // ROUTES
 
 // Page d'accueil
@@ -204,7 +196,7 @@ app.post('/config/country/:type/:country', async (c) => {
   });
 });
 
-// Pour Cloudflare Workers
+// Export pour Cloudflare Workers
 export default {
   fetch: app.fetch,
   // Scheduled handler pour les mises à jour automatiques
@@ -217,6 +209,3 @@ export default {
     );
   },
 };
-
-// Pour les environnements Node.js/Bun
-// export default app;
